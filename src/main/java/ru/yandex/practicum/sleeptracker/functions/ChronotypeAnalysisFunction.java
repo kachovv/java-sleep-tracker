@@ -43,7 +43,7 @@ public class ChronotypeAnalysisFunction implements SleepAnalysisFunction<Chronot
         LongStream.rangeClosed(0, daysBetween)
                 .mapToObj(firstNight::plusDays)
                 .forEach(date -> {
-                    Optional< SleepingSession> nightSession = findNightSession(date, sessions);
+                    Optional<SleepingSession> nightSession = findNightSession(date, sessions);
                     nightSession.ifPresent(s -> {
                         LocalTime sleepTime = s.getStart().toLocalTime();
                         LocalTime wakeTime = s.getEnd().toLocalTime();

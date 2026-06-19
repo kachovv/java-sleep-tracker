@@ -27,6 +27,7 @@ public class SleepTrackerApp {
             System.out.println(result.getDescription() + ": " + result.getValue());
         });
     }
+
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Укажите имя файла ресурса");

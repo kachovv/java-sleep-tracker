@@ -6,6 +6,7 @@ public class SleepingSession {
     private final LocalDateTime start;
     private final LocalDateTime end;
     private final SleepQuality quality;
+
     public SleepingSession(LocalDateTime start, LocalDateTime end, SleepQuality quality) {
         this.start = start;
         this.end = end;

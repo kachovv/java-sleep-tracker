@@ -3,6 +3,7 @@ package ru.yandex.practicum.sleeptracker;
 public class SleepAnalysisResult<T> {
     private final String description;
     private final T value;
+
     public SleepAnalysisResult(String description, T value) {
         this.description = description;
         this.value = value;

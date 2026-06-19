@@ -15,7 +15,7 @@ public class SleepLogReader {
         InputStream is = getClass().getClassLoader().getResourceAsStream(resourceName);
 
         if (is == null) {
-            throw  new IllegalArgumentException("Файл не найден в classpath: " + resourceName);
+            throw new IllegalArgumentException("Файл не найден в classpath: " + resourceName);
         }
         try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
             return br.lines()

@@ -9,10 +9,10 @@ import java.util.List;
 public class AverageSleepDurationFunction implements SleepAnalysisFunction<Double> {
     @Override
     public Double compute(List<SleepingSession> sessions) {
-       return sessions.stream()
-               .mapToDouble(s -> Duration.between(s.getStart(), s.getEnd()).toMinutes())
-               .average()
-               .orElse(0.0);
+        return sessions.stream()
+                .mapToDouble(s -> Duration.between(s.getStart(), s.getEnd()).toMinutes())
+                .average()
+                .orElse(0.0);
     }
 
     @Override
