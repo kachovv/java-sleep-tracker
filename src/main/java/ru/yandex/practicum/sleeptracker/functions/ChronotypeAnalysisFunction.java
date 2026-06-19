@@ -48,7 +48,7 @@ public class ChronotypeAnalysisFunction implements SleepAnalysisFunction<Chronot
                         LocalTime sleepTime = s.getStart().toLocalTime();
                         LocalTime wakeTime = s.getEnd().toLocalTime();
 
-                        if (sleepTime.isAfter(LocalTime.of(23, 0)) && wakeTime.isBefore(LocalTime.of(7, 0))) {
+                        if (sleepTime.isAfter(LocalTime.of(23, 0)) && wakeTime.isAfter(LocalTime.of(9, 0))) {
                             counts[1]++; // это Сова
                         } else if (sleepTime.isBefore(LocalTime.of(22, 0)) && wakeTime.isBefore(LocalTime.of(7, 0))) {
                             counts[0]++; // это Жаворонок
@@ -60,14 +60,25 @@ public class ChronotypeAnalysisFunction implements SleepAnalysisFunction<Chronot
         long lark = counts[0];
         long owl = counts[1];
         long dove = counts[2];
+        long max = Math.max(lark, Math.max(owl, dove));
 
-        if (lark == owl || lark == dove || owl == dove) {
-            return Chronotype.DOVE; // если количество ночей двух типов совпадает, то возвращаем Голубя
+        if (max == 0) {
+            return Chronotype.DOVE;
         }
-        // иначе возвращаем макс.
-        if (lark > owl && lark > dove) {
+
+        int maxCount = 0;
+
+        if (lark == max) maxCount++;
+        if (owl == max) maxCount++;
+        if (dove == max) maxCount++;
+
+        if (maxCount > 1) {
+            return Chronotype.DOVE; // если максимальное значение встречается более одного раза, возвращаем Голубя
+        }
+
+        if (lark == max) {
             return Chronotype.LARK;
-        } else if (owl > lark && owl > dove) {
+        } else if (owl == max) {
             return Chronotype.OWL;
         } else {
             return Chronotype.DOVE;

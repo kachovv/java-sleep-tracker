@@ -11,6 +11,7 @@ public class SleepTrackerApp {
     public SleepTrackerApp() {
         functions.add(new TotalSessionsFunction());
         functions.add(new MinSleepDurationFunction());
+        functions.add(new MaxSleepDurationFunction());
         functions.add(new AverageSleepDurationFunction());
         functions.add(new BadQualitySessionsCountFunction());
         functions.add(new SleeplessNightsCountFunction());
@@ -27,6 +28,20 @@ public class SleepTrackerApp {
         });
     }
     public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Укажите имя файла ресурса");
+            return;
+        }
+        SleepLogReader reader = new SleepLogReader();
+        List<SleepingSession> sessions;
+        try {
+            sessions = reader.readFromResource(args[0]);
+        } catch (Exception e) {
+            System.err.println("Ошибка загрузки данных: " + e.getMessage());
+            return;
+        }
 
+        SleepTrackerApp app = new SleepTrackerApp();
+        app.analyzeAndPrint(sessions);
     }
 }
