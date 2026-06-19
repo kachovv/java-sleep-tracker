@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface SleepAnalysisFunction<T> {
     T compute(List<SleepingSession> sessions);
-    
+
     String getDescription();
 }
